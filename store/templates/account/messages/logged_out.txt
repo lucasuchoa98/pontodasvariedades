@@ -1,0 +1,4 @@
+{% load i18n %}
+{% blocktrans %}
+Conectado com êxito como {{name}}
+{% endblocktrans %}

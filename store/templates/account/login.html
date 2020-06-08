@@ -1,0 +1,83 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+</head>
+  <main>
+    
+    <div class="container">
+      <section class="mb-4">
+        <div class="row wow fadeIn">
+          <div class='col-6 offset-3'>
+          <div class="container">
+            <br>
+            <div class='row '>
+              <div class="col-lg col-md-6 mb-4" >
+                <div class="card">
+                  <div class="card-header">
+                  <h1 style=" text-align: center">{% trans "Entrar" %}</h1>
+                </div>
+                <div class="wrapper fadeInDown">
+                  <div id="formContent">
+            <form class="login" method="POST" action="{% url 'account_login' %}">                   
+              {% csrf_token %}
+              <div class="col align-self-center">
+              {{ form|crispy }}
+              </div>
+              {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+              {% endif %}
+                <a class="btn btn-secondary" href="{% url 'account_reset_password' %}" style="margin-left: 130px;">
+                {% trans "Esqueceu a senha?" %}</a>
+                <button class="btn btn-primary" type="submit">{% trans "Entrar" %}</button>
+                <div class="modal-footer">
+                  <div class="forgot login-footer">
+                  <span>Gostaria de <a href="{% url 'account_signup' %}">criar uma conta</a>?
+                  </span>
+                  </div>
+                </div>
+            </form>
+                        <div
+              class="fb-like"
+              data-share="true"
+              data-width="450"
+              data-show-faces="true">
+            </div>
+          </div>
+        </div>
+      </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1137191306660900',
+          xfbml      : true,
+          version    : 'v7.0'
+        });
+        FB.AppEvents.logPageView();
+      };
+    
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "https://connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+  </main>
+  
+{% endblock %}

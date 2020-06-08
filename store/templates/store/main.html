@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Ponto da Variedades</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+	crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+	<script type="text/javascript">
+		var user = '{{ request.user }}'
+	
+	
+
+	function getToken(name) {
+	var cookieValue = null;
+	if (document.cookie && document.cookie !== '') {
+		var cookies = document.cookie.split(';');
+		for (var i = 0; i < cookies.length; i++) {
+			var cookie = cookies[i].trim();
+				// Does this cookie string begin with the name we want?
+				if (cookie.substring(0, name.length + 1) === (name + '=')) {
+					cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+					break;
+				}
+			}
+		}
+		return cookieValue;
+	}
+		var csrftoken = getToken('csrftoken');
+
+	function getCookie(name) {
+		var cookieArr = document.cookie.split(";")
+
+		for( var i=0; i<cookieArr.length; i++) {
+			var cookiePair = cookieArr[i].split("=");
+
+			if (name ==cookiePair[0].trim()) {
+				return decodeURIComponent(cookiePair[1]);
+			}
+		}
+	return null;
+	}
+	var cart = JSON.parse(getCookie('cart'))
+	console.log('cart:')
+	if(cart ==undefined){
+		cart = {}
+		console.log('Cart was created')
+		document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+	}	
+	</script>
+
+</head>
+<body>
+
+
+
+
+<!-- navbar-->
+	<nav class="navbar fixed-top  navbar-light" style="background-color: #000000;">
+		<div class="container">
+			<!-- Brand -->
+			<a class="navbar-brand waves-effect" href="/">
+				<strong class="blue-text" style="color:#fedc3d;"> Ponto das Variedades </strong>
+			</a>
+			<form action="" method='get' > 
+				<input name="q" type="text" style=' margin-left: 100px;' placeholder="Procure por nome.." value={{request.get.q}} >
+				<button class="btn btn-primary" style="background-color:#fedc3d; 
+				padding-top: 2px; padding-bottom: 1px;" type="submit" value='Search'>
+				<span style="color: #000000;">Procurar</span></button>
+			</form>	
+			  <p style="color: #fedc3d; margin-top: 15px;">
+				
+				{% if '{{request.user}}' == 'AnonymousUser' %}
+				Bem vindo(a) :)
+				{% else %}
+				Bem vindo(a) {{request.user}} ! :)
+				{% endif %}
+			</p>
+		</div>
+		
+		<button style="background-color:white;" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+		  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<a href="{% url 'store:cart' %}">
+			<img  id="cart-icon" src="{% static 'images/cart.png' %}">
+			</a>
+		<p id="cart-total" style="background-color: #01abaa;">{{cartItems}} </p>
+	
+		<!-- Links -->
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+			<!-- Left -->
+  
+					<!-- Right -->
+					<ul class="navbar-nav nav-flex-icons">
+					{% if request.user.is_authenticated %}
+					<li class="nav-item" >
+						<a class="nav-link waves-effect" href="{% url 'account_logout' %}">
+						<span class="clearfix d-none d-sm-inline-block" style="color:#fedc3d;"> Sair </span>
+						</a>
+					</li>
+					{% else %}
+					<li class="nav-item">
+						<a class="nav-link waves-effect" href="{% url 'account_login' %}">
+					<span class="clearfix d-none d-sm-inline-block" style="color:#fedc3d;"> Entrar </span>
+					</a>
+					</li>
+					<li class="nav-item">
+					<a class="nav-link waves-effect" href="{% url 'account_signup' %}">
+					<span class="clearfix d-none d-sm-inline-block" style="color:#fedc3d;"> inscrever-se </span>
+					</a>
+					</li>
+					{% endif %}
+						</ul>
+	  				</div>
+
+				</div>
+		
+			</div>
+		  
+	 
+		</div>
+	</nav>
+
+<!-- navbar-->
+
+<div class="wrapper">
+    <div class="sidebar">
+        <ul>
+			<li><a href="/"><i class="fas fa-home" style="margin-left: 20px;"></i>Home</a></li>
+			<div class="dbtn-group dropup">
+				<button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenu"
+				 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 15px 26px; background-color:#01abaa ;">
+				  Categorias
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenu">
+				<form action="" method='get' > 
+				  <button name = 'category' class="dropdown-item" value="Bo" type="submit">Bolsas</button>
+				</form>	
+				<form action="" method='get' > 
+				  <button name = 'category' class="dropdown-item" value="Ci" type="submit">Cintos</button>
+				</form>	
+				<form action="" method='get' > 
+				  <button name = 'category' class="dropdown-item" value="Ca" type="submit">Carteiras</button>
+				</form>	
+				<form action="" method='get' > 
+				  <button name = 'category' class="dropdown-item"value="Es" type="submit">Escolar</button>
+				</form>	
+				<form action="" method='get' > 
+				  <button name = 'category' class="dropdown-item" value="Ar" type="submit">Armarinho</button>
+				</form>	
+				<form action="" method='get' > 
+				  <button name = 'category' class="dropdown-item" value="Br" type="submit">Briquedos</button>
+				</form>	
+				</div>
+				<div class="dbtn-group dropup">
+					<button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenu"
+					 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 15px 37px; background-color:#01abaa ;">
+					  Contato
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenu">
+						<br>
+				
+						<p  class="text-muted">
+						Av. Maceió, 740<br>
+						Tabuleiro do Martins,<br>
+						Maceió - AL, 57061-110<br>
+						Email: <small>contato@pontodasvariedades.com</small><br>
+						Telefone: (82) 3324-6711</p>
+					</div>
+				  </div>
+			  </div>
+        </ul> 
+        <div class="social_media">
+          <a href="https://www.facebook.com/Ponto-das-Variedades-109110110824809"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/pontodasvariedadesloja1/?hl=pt-br"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="main_content">
+        <div class="info">
+			{% block content %}
+
+
+			{% endblock content %}
+	
+			 {% block extra_body %}
+			 {% endblock %}
+			 {% include "store/footer.html" %}
+		</div>
+    </div>
+</div>
+
+
+		 
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity=
+	"sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+	 crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity=
+	"sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	 crossorigin="anonymous"></script>
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity=
+	"sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	 crossorigin="anonymous"></script>
+
+	<script type="text/javascript" src = "{% static 'js/cart.js' %}"></script>
+</body>
+</html>

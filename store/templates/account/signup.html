@@ -1,0 +1,49 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+<head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+</head>
+<main>
+  <div class="container">
+    <section class="mb-4">
+      <div class="row wow fadeIn">
+        <div class='col-6 offset-3'>
+          <div class='row '>
+            <div class="col-lg col-md-6 mb-4" >
+              <div class="card">
+                <div class="card-header">
+                  <h1>{% trans "Sign Up" %}</h1>
+                    <div class="wrapper fadeInDown">
+                      <div id="formContent">
+                        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                          {% csrf_token %}
+                          {{ form|crispy }}
+                          {% if redirect_field_value %}
+                          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                          {% endif %}
+                          <button class='btn btn-primary' type="submit" >{% trans "Registrar-se" %} &raquo;</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>          
+  </main>
+
+{% endblock %}
