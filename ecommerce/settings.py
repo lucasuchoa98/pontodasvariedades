@@ -158,3 +158,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 ACCOUNT_EMAIL_REQUIRED=True
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
