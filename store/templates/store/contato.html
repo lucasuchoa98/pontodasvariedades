@@ -1,16 +1,61 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
-<br>
-<br>
-<br>
-<br>
-<br>
-<h1 style="text-align: center;">Contato</h1>
-<p style="font-family: 'Times New Roman', Times, serif; text-align: center;">
-Av. Maceió, 740<br>
-Tabuleiro do Martins, Maceió - AL, 57061-110<br>
-Email: contato@pontodasvariedades.com<br>
-Telefone: (82) 3324-6711</p>
+{% load crispy_forms_tags %}
+    
+<section class="mb-4">
 
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Fale com a gente</h2>
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5">Você tem alguma pergunta? Por favor, não hesite em nos contatar diretamente. Nossa equipe entrará em contato com você dentro de
+        uma questão de horas para ajudá-lo.</p>
+    
+    <div class="container">
+    <div class="row">
+    
+
+        <!--Grid column-->
+        <div class="col-md-9 mb-md-0 mb-5">
+            <form method="post">
+
+                <div class="row">
+
+                    <!--Grid column-->
+                    <!--<div class="col-md-6">
+                        <div class="md-form mb-0">
+                            {% csrf_token %}
+                            {{form|crispy}}
+                            <div class="form-actions">
+                                <button class="btn btn-primary" type="submit">Send</button>
+                              </div>
+                        </div>
+                    </div>-->
+                    
+
+            </form>
+            <br>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-5 text-center">
+            <ul class="list-unstyled mb-0">
+                <li><i class="fas fa-map-marker-alt fa-2x"></i>
+                    <p>Avenida Maceió - Tabuleiro do Martins, Maceió - AL</p>
+                </li>
+
+                <li><i class="fas fa-phone mt-4 fa-2x"></i>
+                    <p>(82) 3324-6711</p>
+                </li>
+
+                <li><i class="fas fa-envelope mt-4 fa-2x"></i>
+                    <p>contato@pdasvariedades.com</p>
+                </li>
+            </ul>
+        </div>
+        <!--Grid column-->
+    </div>
+</div>
+</section>
+<!--Section: Contact v.2-->
 {% endblock %}
