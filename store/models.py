@@ -10,8 +10,8 @@ CATEGORY_CHOICES = (
     ('Ca', 'Carteiras'),
     ('Es', 'Escolar'),
     ('Ar', 'Armarinho'),
-    ('Br', 'Briquedos')
-
+    ('Br', 'Briquedos'),
+    ('Ac','Acessorio'),
 )
 
 
