@@ -1,23 +1,44 @@
-<footer class="card-footer text-center font-small mt-4 wow fadeIn ">
 
-    <!--Copyright-->
-    <div class="footer-copyright py-3">
-      <small class="text-muted">
+  <!-- Footer -->
+<footer class="text-light" style="background: #01abaa;
+padding: 40px; color: #f8f9fa">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-3 col-lg-4 col-xl-3">
+              <h5 style="color: #fedc3d;">Sobre</h5>
+              <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
+              <p class="mb-0" style="color:white">
+                Preços e condições de pagamento exclusivos para compras via internet, podendo variar nas lojas físicas. Caso os produtos apresentem divergências de valores, o preço válido é o da Sacola de compras. Vendas sujeitas a análise e confirmação de dados.
+          </div>
 
-        Preços e condições de pagamento exclusivos para compras via internet, podendo variar nas lojas físicas. 
-        Caso os produtos apresentem divergências de valores, o preço válido é o da Sacola de compras.
-        Vendas sujeitas a análise e confirmação de dados.
-      </small>
-      <small class="text-muted">
-        Ponto das variedades - CNPJ:
-      </small>
-      <small class="text-muted">
-        Endereço: Avenida Maceió - Tabuleiro do Martins, Maceió - AL<br>
-      </small>
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto">
+              <h5 style="color: #fedc3d;">Endereço</h5>
+              <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
+              <ul class="list-unstyled">
+                <p class="mb-0" style="color:white">
+                Avenida Maceió - Tabuleiro do Martins, Maceió - AL
+                </p>
+              </ul>
+          </div>
 
-        <a href="{% url 'store:store' %}"><small class="text-muted" target="_blank""> 
-          ®Ponto das Variedades – Todos os direitos reservados. </small></a>
-    </div>
-    <!--/.Copyright-->
-  
-  </footer>
+
+
+          <div class="col-md-4 col-lg-3 col-xl-3">
+              <a href="{% url 'store:contato'%}"><h5 style="color: #fedc3d;">Contato</h5></a>
+              <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
+              <ul class="list-unstyled">
+                  <li><i class="fa fa-envelope mr-2"></i> contato@pdasvariedades.com</li>
+                  <li><a class="whatsapp-ic" role="button"><i class="fab fa-lg fa-whatsapp mr-2"></i>(82) 8888-8888</a></li>
+                  <li></li><a class="ins-ic mr-3" role="button"><i class="fab fa-lg fa-instagram mr-2"></i> pontodasvariedadesloja1
+
+                  </a></li>
+              </ul>
+          </div>
+          <div class="col-12 copyright mt-3">
+              <p class="float-left">
+                  <a href="#" style="color:#fedc3d">Voltar ao topo</a>
+              </p>
+          </div>
+      </div>
+  </div>
+</footer>
