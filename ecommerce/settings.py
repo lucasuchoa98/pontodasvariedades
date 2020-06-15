@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'qvn(df&ud6^hjrlzwie$mj*#uj^b@c6^wnpw$o@1i!hb1&$zf='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['pontodasvariedades.herokuapp.com','127.0.0.1']
 
