@@ -10,8 +10,9 @@ from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .forms import ContactForm
+from django.contrib import messages
 
-# Create your views here.
+
 """
 class StoreView(ListView):
     model = Product
@@ -164,47 +165,23 @@ def contact(request):
     data = cartData(request)
     cartItems = data['cartItems']
     context = {'cartItems':cartItems}
-    form_class = ContactForm
+
 
     if request.method == 'POST':
-        form = form_class(data=request.POST)
-
+        form = ContactForm(data=request.POST)
         if form.is_valid():
-            contact_name = request.POST.get(
-                'contact_name'
-            , '')
-            contact_email = request.POST.get(
-                'contact_email'
-            , '')
-            form_content = request.POST.get('content', '')
+            contact_name = request.POST.get('contact_name', '')
+            contact_email = request.POST.get('contact_email', '')
+            content = request.POST.get('content', '')
+            assunto = request.POST.get('subject', '')
 
-            Subject = request.POST.get('subject', '')
-
-            # Email the profile with the
-            # contact information
-            template =  get_template('store/contact_template.txt')
-            context = {
-                'contact_name': contact_name,
-                'contact_email': contact_email,
-                'form_content': form_content,
-            }
-            content = template.render(context)
-
-            email = EmailMessage(
-                "New contact form submission",
-                content,
-                "Ponto das variedades" +'',
-                ['lucasuchoalg@gmail.com'],
-                headers = {'Reply-To': contact_email }
-            )
-            email.send()
-
-            send_mail(Subject, form_content, contact_email, ['lucasuchoalg@gmail.com'], fail_silently=False)
+            contato = Contato(contact_name=contact_name, contact_email=contact_email, content=content, subject= assunto)
+            contato.save(0)
+            messages.info(request, 'Sua mensagem foi enviada com sucesso!')
             return redirect('store:contato')
+    else:
+        form = ContactForm()
 
-    return render(request, 'store/contato.html', {
-        'form': form_class,
-    })
-
-def successView(request):
-    return JsonResponse('obrigado pela mensagem')
+        return render(request, 'store/contato.html', {
+        'form': form,
+        })
