@@ -107,3 +107,15 @@ class ShippingAddress(models.Model):
 
     def __str__(self):
         return self.address
+
+class Contato(models.Model):
+    contact_name = models.CharField(max_length=254)
+    contact_email = models.EmailField()
+    subject = models.CharField(max_length=254)
+    content = models.CharField(max_length=254)
+
+    class Meta:
+        app_label = 'store'
+
+    def __str__(self):
+        return self.contact_name
