@@ -2,8 +2,16 @@
 {% load static %}
 {% block content %}
 {% load crispy_forms_tags %}
-    
+
 <section class="mb-4">
+    
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
     <!--Section heading-->
     <h2 class="h1-responsive font-weight-bold text-center my-4">Fale com a gente</h2>
@@ -22,7 +30,7 @@
                 <div class="row">
 
                     <!--Grid column-->
-                    <!--<div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="md-form mb-0">
                             {% csrf_token %}
                             {{form|crispy}}
@@ -30,7 +38,7 @@
                                 <button class="btn btn-primary" type="submit">Send</button>
                               </div>
                         </div>
-                    </div>-->
+                    </div>
                     
 
             </form>

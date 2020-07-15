@@ -3,8 +3,6 @@
 {% block content %}
      <div class="row">
 		<div class="col-lg-6">
-			<br>
-		 <br>
 			<div class="box-element" id="form-wrapper">
 				<form id="form">
 					{% csrf_token %}
@@ -26,8 +24,12 @@
 						<div class="form-field">
 							<input class="form-control" type="text" name="address" placeholder="Endereço..">
 						</div>
+						
 						<div class="form-field">
-							<input class="form-control" type="text" name="city" placeholder="Cidade..">
+							<select class="form-control">
+								<option selected>Cidade...</option>
+								<option class="form-control" name="city">Maceio</option>
+							</select>
 						</div>
 						<div class="form-field">
 							<input class="form-control" type="text" name="state" placeholder="Estado..">
@@ -35,9 +37,7 @@
 						<div class="form-field">
 							<input class="form-control" type="text" name="zipcode" placeholder="CEP..">
 						</div>
-						<div class="form-field">
-							<input class="form-control" type="text" name="country" placeholder="Pais..">
-						</div>
+
 					</div>
 
 					<hr>
@@ -56,8 +56,6 @@
 		</div>
 
 		<div class="col-lg-6">
-			<br>
-		 <br>
 			<div class="box-element">
 				<a  class="btn btn-outline-dark" href="{% url 'store:cart' %}">&#x2190; Voltar ao carrinho</a>
 				<hr>
